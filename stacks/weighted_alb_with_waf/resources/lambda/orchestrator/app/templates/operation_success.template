@@ -1,0 +1,19 @@
+Notification of {{vars['operator']}} operation.
+
+A {{vars['operator']}} operation has been initiated.
+
+Affected AWS region: {{vars['aws_region']}}
+Affected AWS account: {{vars['aws_account_id']}}
+
+ALB add/remove operations are managed by AWS Step Functions. The specific State Machine for this execution is:
+
+State Machine ARN: {{vars['state_machine_arn']}} 
+State Machine ARN: {{vars['state_machine_name']}}
+
+Details of {{vars['operator']}} execution are provided below (in YAML).
+
+----------------------------------------------------
+
+{{vars['formatted_event']}}
+
+----------------------------------------------------

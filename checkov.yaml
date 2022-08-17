@@ -1,0 +1,23 @@
+branch: main
+download-external-modules: true
+evaluate-variables: true
+external-modules-download-path: .external_modules
+framework: cloudformation
+output: cli
+directory:
+  - cdk.out
+skip-download: true
+quiet: true
+compact: true
+skip-check:
+  - CKV_AWS_2 # Ensure ALB protocol is HTTPS"
+  - CKV_AWS_65 # Ensure container insights are enabled on ECS cluster
+  - CKV_AWS_66 # Ensure that CloudWatch Log Group specifies retention days
+  - CKV_AWS_91 # Ensure the ELBv2 (Application/Network) has access logging enabled
+  - CKV_AWS_103 # Ensure that Application Load Balancer Listener is using TLS v1.2
+  - CKV_AWS_107 # Ensure IAM policies does not allow credentials exposure
+  - CKV_AWS_111 # Ensure IAM policies does not allow write access without constraints
+  - CKV_AWS_116 # Ensure that AWS Lambda function is configured for a Dead Letter Queue(DLQ)
+  - CKV_AWS_131 # Ensure that ALB drops HTTP headers
+  - CKV_AWS_158 # Ensure that CloudWatch Log Group is encrypted by KMS
+  - CKV_AWS_173 # Check encryption settings for Lambda environmental variable

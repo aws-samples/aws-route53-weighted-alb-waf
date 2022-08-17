@@ -1,0 +1,5 @@
+ERROR: ALB monitor has detected a problem with the ALBs
+
+Error message at {{vars['error_timestamp']}}:
+
+{{vars['error_message']}}
