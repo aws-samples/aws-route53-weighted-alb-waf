@@ -3,10 +3,6 @@ import json
 import pytest
 from expects import expect
 
-from aws_cdk import (
-    core
-)
-
 from cdk_expects_matcher.CdkMatchers import have_resource, ANY_VALUE, contain_metadata_path
 import tests.utils.base_test_case as tc
 from stacks.weighted_alb_with_waf.weighted_alb_with_waf_stack import WeightedAlbWithWAFStack

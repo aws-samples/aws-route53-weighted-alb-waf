@@ -1,15 +1,27 @@
-import os
-import boto3
-import botocore.exceptions
-import string
-import random
+#!/usr/bin/env python
+
+"""
+    create_load_balancer.py:
+    Lambda handler that is invoked by an AWS Step Functions
+    State Machine as part of an ALB Scale-Out operation.
+    This handler creates a new ALB, listener and target group
+    and adds the ECS tasks as targets of the target group.
+"""
+
+import datetime
 import json
 import logging
-import datetime
+import os
+import random
+import string
 import traceback
-from ..services.notifier_service import NotifierService
-from ..services.fleet_service import FleetService
+
+import boto3
+import botocore.exceptions
+
 from ..services.constants_service import ConstantsService
+from ..services.fleet_service import FleetService
+from ..services.notifier_service import NotifierService
 
 # set logging
 logger = logging.getLogger()

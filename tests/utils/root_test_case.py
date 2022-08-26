@@ -7,7 +7,6 @@ import typing
 from cdk_expects_matcher.CdkMatchers import have_resource, ANY_VALUE
 from expects import expect
 from unittest import TestCase
-from utils.CdkUtils import CdkUtils
 
 cdk_out_dir = 'cdk.out'
 suffix = 'template.json'

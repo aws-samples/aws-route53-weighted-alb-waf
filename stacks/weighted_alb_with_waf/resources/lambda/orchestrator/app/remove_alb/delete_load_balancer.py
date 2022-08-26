@@ -1,14 +1,26 @@
-import os
-import boto3
-import botocore.exceptions
+#!/usr/bin/env python
+
+"""
+    delete_load_balancer.py:
+    Lambda handler that is invoked by an AWS Step Functions
+    State Machine as part of an ALB Scale-In operation.
+    This handler removes an ALB along with associated resources
+    such as listeners and target groups.
+"""
+
+import datetime
 import json
 import logging
-import datetime
-import traceback
+import os
 import time
-from ..services.notifier_service import NotifierService
-from ..services.fleet_service import FleetService
+import traceback
+
+import boto3
+import botocore.exceptions
+
 from ..services.constants_service import ConstantsService
+from ..services.fleet_service import FleetService
+from ..services.notifier_service import NotifierService
 
 # set logging
 logger = logging.getLogger()

@@ -105,6 +105,12 @@ The project code uses the Python flavour of the AWS CDK ([Cloud Development Kit]
 
 Additionally, the project assumes the availability of a `bash` (or compatible) shell environment and a `Docker` engine.
 
+Additionally, the project assumes:
+
+* configuration of [AWS CLI Environment Variables](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html).
+* the availability of a `bash` (or compatible) shell environment.
+* a [Docker](https://www.docker.com/) installation.
+
 The project code requires that the AWS account is [bootstrapped](https://docs.aws.amazon.com/de_de/cdk/latest/guide/bootstrapping.html) in order to allow the deployment of the CDK stack.
 
 ```

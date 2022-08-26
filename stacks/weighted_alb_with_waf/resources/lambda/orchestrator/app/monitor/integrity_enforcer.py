@@ -1,15 +1,26 @@
-import os
-import boto3
-import botocore.exceptions
+#!/usr/bin/env python
+
+"""
+    integrity_enforcer.py:
+    Lambda Function that executes according to a periodic
+    CloudWatch Events schedule and enforces the desired
+    configuration for ALB, Route53 and WAF resources.
+"""
+
+import datetime
 import json
 import logging
+import os
 import traceback
-import datetime
-from ..services.notifier_service import NotifierService
-from ..services.fleet_service import FleetService
+
+import boto3
+import botocore.exceptions
+
 from ..services.constants_service import ConstantsService
-from ..services.statemachine_service import StateMachineService
+from ..services.fleet_service import FleetService
 from ..services.monitor_service import MonitorService
+from ..services.notifier_service import NotifierService
+from ..services.statemachine_service import StateMachineService
 
 # set logging
 logger = logging.getLogger()

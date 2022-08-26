@@ -1,10 +1,22 @@
-import os
-import boto3
-import botocore.exceptions
+#!/usr/bin/env python
+
+"""
+    associate_alb_to_waf.py:
+    Lambda handler that is invoked by an AWS Step Functions
+    State Machine as part of an ALB Scale-Out operation.
+    This handler ensures that the newly created ALB
+    is associated to AWS WAF.
+"""
+
+import datetime
 import json
 import logging
-import datetime
+import os
 import traceback
+
+import boto3
+import botocore.exceptions
+
 from ..services.notifier_service import NotifierService
 
 # set logging

@@ -1,7 +1,14 @@
-import os
-import boto3
+#!/usr/bin/env python
+
+"""
+    statemachine_service.py:
+    Provides functions for querying AWS Step Functions State Machines.
+"""
+
 import logging
-from ..services.notifier_service import NotifierService
+import os
+
+import boto3
 
 # set logging
 logger = logging.getLogger()
@@ -11,13 +18,15 @@ logger.setLevel(logging.DEBUG)
 stepfunctions_client = boto3.client('stepfunctions')
 
 class StateMachineService:
+    """
+        Provides functions for querying AWS Step Functions State Machines.
+    """
 
     # get env vars
     ADD_ALB_STATE_MACHINE_ARN = os.environ['ADD_ALB_STATE_MACHINE_ARN']
     ADD_ALB_STATE_MACHINE_NAME = os.environ['ADD_ALB_STATE_MACHINE_NAME']
     REMOVE_ALB_STATE_MACHINE_ARN = os.environ['REMOVE_ALB_STATE_MACHINE_ARN']
     REMOVE_ALB_STATE_MACHINE_NAME = os.environ['REMOVE_ALB_STATE_MACHINE_NAME']
-
 
     def is_operation_in_progress(self) -> bool:
 

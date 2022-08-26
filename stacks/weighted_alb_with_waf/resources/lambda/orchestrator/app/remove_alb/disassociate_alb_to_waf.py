@@ -1,14 +1,26 @@
+#!/usr/bin/env python
+
+"""
+    disassociate_alb_to_waf.py:
+    Lambda handler that is invoked by an AWS Step Functions
+    State Machine as part of an ALB Scale-In operation.
+    This handler ensures that the removed ALB
+    is disassociated from AWS WAF.
+"""
+
+import datetime
+import json
+import logging
 import os
+import time
+import traceback
+
 import boto3
 import botocore.exceptions
-import json
-import time
-import logging
-import datetime
-import traceback
-from ..services.notifier_service import NotifierService
-from ..services.fleet_service import FleetService
+
 from ..services.constants_service import ConstantsService
+from ..services.fleet_service import FleetService
+from ..services.notifier_service import NotifierService
 
 # set logging
 logger = logging.getLogger()

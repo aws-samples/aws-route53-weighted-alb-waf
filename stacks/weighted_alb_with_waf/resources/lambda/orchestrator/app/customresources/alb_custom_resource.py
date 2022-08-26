@@ -1,7 +1,14 @@
-import boto3
-import botocore
+#!/usr/bin/env python
+
+"""
+    alb_custom_resource.py:
+    CloudFormation Custom Resource handler that is used
+    to obtain the ALB Name from a CDK generated ALB ARN.
+"""
+
 import json
 import logging
+
 
 def lambda_handler(event, context):
     # set logging

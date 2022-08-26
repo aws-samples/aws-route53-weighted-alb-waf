@@ -1,15 +1,24 @@
-import boto3
-import botocore
+#!/usr/bin/env python
+
+"""
+    dynamic_resource_cleanup.py:
+    Lambda Function that is used to destroy the dynamic (non CDK managed)
+    AWS Resources that are created during ALB Scale-Out operations.
+"""
+
 import json
-import os
-import time
 import logging
-from ..services.fleet_service import FleetService
+
+import boto3
+
+from ..remove_alb import (
+    delete_load_balancer, 
+    disassociate_alb_to_waf,
+    remove_alb_from_route_53
+)
 from ..services.constants_service import ConstantsService
+from ..services.fleet_service import FleetService
 from ..services.statemachine_service import StateMachineService
-from ..remove_alb import delete_load_balancer
-from ..remove_alb import disassociate_alb_to_waf
-from ..remove_alb import remove_alb_from_route_53
 
 # boto3 clients
 stepfunctions_client = boto3.client('stepfunctions')

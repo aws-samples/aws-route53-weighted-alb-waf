@@ -1,13 +1,26 @@
-import os
-import boto3
-import botocore.exceptions
+#!/usr/bin/env python
+
+"""
+    add_alb_to_route_53.py:
+    Lambda handler that is invoked by an AWS Step Functions
+    State Machine as part of an ALB Scale-Out operation.
+    This handler ensures that the newly created ALB
+    is added to the Weighted Resource Set of the Route53
+    private hosted zone.
+"""
+
+import datetime
 import json
 import logging
-import datetime
+import os
 import traceback
-from ..services.notifier_service import NotifierService
-from ..services.fleet_service import FleetService
+
+import boto3
+import botocore.exceptions
+
 from ..services.constants_service import ConstantsService
+from ..services.fleet_service import FleetService
+from ..services.notifier_service import NotifierService
 
 # set logging
 logger = logging.getLogger()

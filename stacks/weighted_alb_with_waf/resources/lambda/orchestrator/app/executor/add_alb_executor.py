@@ -1,10 +1,21 @@
-import os
-import boto3
-import botocore.exceptions
+#!/usr/bin/env python
+
+"""
+    add_alb_executor.py:
+    Lambda Function that provides an endpoint through which
+    the AWS Step Functions State Machine for ALB Scale-Out
+    operations is invoked.
+"""
+
+import datetime
 import json
 import logging
+import os
 import traceback
-import datetime
+
+import boto3
+import botocore.exceptions
+
 from ..services.notifier_service import NotifierService
 from ..services.statemachine_service import StateMachineService
 

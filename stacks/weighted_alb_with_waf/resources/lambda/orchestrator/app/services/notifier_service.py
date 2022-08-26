@@ -1,12 +1,26 @@
-import json, boto3, os, logging
-from os.path import dirname, abspath
+#!/usr/bin/env python
+
+"""
+    notifier_service.py:
+    Provides functions for generating and sending notification messages.
+"""
+
+import logging
+import os
+from os.path import abspath, dirname
+
+import boto3
 import jinja2
 import yaml
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
+
 class NotifierService:
+    """
+        Provides functions for generating and sending notification messages.
+    """
 
     client = boto3.client('sns')
 

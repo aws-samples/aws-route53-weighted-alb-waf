@@ -1,11 +1,26 @@
-import boto3, os, logging
-import datetime
+#!/usr/bin/env python
+
+"""
+    fleet_service.py:
+    Provides functions for querying and filtering ALB
+    instances that are part of the scaling fleet.
+"""
+
+import logging
+import os
+
+import boto3
+
 from ..services.constants_service import ConstantsService
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
 class FleetService:
+    """
+        Provides functions for querying and filtering ALB
+        instances that are part of the scaling fleet.
+    """
 
     client = boto3.client('elbv2')
 
@@ -16,8 +31,8 @@ class FleetService:
     constants_service = ConstantsService()
 
 
-    def __filter_load_balancers_by_group(
-            self, 
+    def _filter_load_balancers_by_group(
+            self,
             load_balancers: list[dict]
         ) -> list[str]:
         if len(load_balancers) == 0:
@@ -41,8 +56,8 @@ class FleetService:
         return albs_with_tag
 
 
-    def __filter_load_balancers_by_dynamic_only(
-            self, 
+    def _filter_load_balancers_by_dynamic_only(
+            self,
             load_balancers: list[dict]
         ) -> list[str]:
         if len(load_balancers) == 0:
@@ -65,7 +80,7 @@ class FleetService:
 
         return albs_with_tag
 
-    def __get_load_balancers_by_arn(
+    def _get_load_balancers_by_arn(
             self, 
             load_balancer_arns: list[str]
         ) -> list[str]:
@@ -90,10 +105,10 @@ class FleetService:
         load_balancers = list(load_balancers)
 
         if filter.upper() == self.constants_service.FILTER_BY_GROUP:
-            filtered_load_balancers = self.__filter_load_balancers_by_group(load_balancers)
-            return self.__get_load_balancers_by_arn(filtered_load_balancers)
+            filtered_load_balancers = self._filter_load_balancers_by_group(load_balancers)
+            return self._get_load_balancers_by_arn(filtered_load_balancers)
         elif filter.upper() == self.constants_service.FILTER_BY_CREATION_DYNAMIC:
-            filtered_load_balancers = self.__filter_load_balancers_by_dynamic_only(load_balancers)
-            return self.__get_load_balancers_by_arn(filtered_load_balancers)
+            filtered_load_balancers = self._filter_load_balancers_by_dynamic_only(load_balancers)
+            return self._get_load_balancers_by_arn(filtered_load_balancers)
         else:
             raise ValueError(f"Invalid filter value. Should be one of; {self.constants_service.FILTER_BY_GROUP} or {self.constants_service.FILTER_BY_CREATION_DYNAMIC}. ")

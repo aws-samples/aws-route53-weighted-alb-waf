@@ -1,31 +1,40 @@
+#!/usr/bin/env python
+
+"""
+    weighted_alb_with_waf_stack.py:
+    CDK stack which creates and deploys the AWS resources
+    required by the ec2-imagebuilder-route53-weighted-alb-waf
+    project.
+"""
+
 import os
-import json
 
-from aws_cdk import (
-    core,
-    aws_ec2 as ec2,
-    aws_elasticloadbalancingv2 as albv2,
-    aws_wafv2 as wafv2,
-    aws_route53 as route53,
-    aws_kms as kms,
-    aws_lambda,
-    aws_iam as iam,
-    aws_sns as sns,
-    aws_ssm as ssm,
-    aws_sns_subscriptions,
-    aws_events as events,
-    aws_events_targets as events_targets,
-    aws_stepfunctions as stepfunctions,
-    aws_stepfunctions_tasks as stepfunctions_tasks,
-    aws_ecs as ecs,
-    aws_logs as logs,
-    custom_resources
-)
-
+from aws_cdk import aws_ec2 as ec2
+from aws_cdk import aws_ecs as ecs
+from aws_cdk import aws_elasticloadbalancingv2 as albv2
+from aws_cdk import aws_events as events
+from aws_cdk import aws_events_targets as events_targets
+from aws_cdk import aws_iam as iam
+from aws_cdk import aws_kms as kms
+from aws_cdk import aws_lambda
+from aws_cdk import aws_logs as logs
+from aws_cdk import aws_route53 as route53
+from aws_cdk import aws_sns as sns
+from aws_cdk import aws_sns_subscriptions
+from aws_cdk import aws_ssm as ssm
+from aws_cdk import aws_stepfunctions as stepfunctions
+from aws_cdk import aws_stepfunctions_tasks as stepfunctions_tasks
+from aws_cdk import aws_wafv2 as wafv2
+from aws_cdk import core, custom_resources
 from utils.CdkUtils import CdkUtils
 
 
 class WeightedAlbWithWAFStack(core.Stack):
+    """
+        CDK stack which creates and deploys the AWS resources
+        required by the ec2-imagebuilder-route53-weighted-alb-waf
+        project.
+    """
 
     LAMBDA_PRINCIPAL: iam.IPrincipal = iam.ServicePrincipal(service=f'lambda.{core.Aws.URL_SUFFIX}')
     CLOUDWATCH_PRINCIPAL: iam.IPrincipal = iam.ServicePrincipal(service=f'cloudwatch.{core.Aws.URL_SUFFIX}')

@@ -1,15 +1,28 @@
-import os
-import boto3
-import botocore.exceptions
+#!/usr/bin/env python
+
+"""
+    monitor.py:
+    Lambda Function that executes according to a periodic
+    CloudWatch Events schedule and monitors the desired
+    configuration for ALB, Route53 and WAF resources. If
+    a mis-configuration is detected, the Lambda function sends
+    a notification to a SNS topic.
+"""
+
+import datetime
 import json
 import logging
+import os
 import traceback
-import datetime
-from ..services.notifier_service import NotifierService
-from ..services.fleet_service import FleetService
+
+import boto3
+import botocore.exceptions
+
 from ..services.constants_service import ConstantsService
-from ..services.statemachine_service import StateMachineService
+from ..services.fleet_service import FleetService
 from ..services.monitor_service import MonitorService
+from ..services.notifier_service import NotifierService
+from ..services.statemachine_service import StateMachineService
 
 # set logging
 logger = logging.getLogger()

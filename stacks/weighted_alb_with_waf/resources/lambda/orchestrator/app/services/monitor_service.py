@@ -1,6 +1,16 @@
-import boto3
-import os
+#!/usr/bin/env python
+
+"""
+    monitor_service.py:
+    Provides functions that assist in identfying mis-configured
+    resources within the ALB scaling fleet.
+"""
+
 import logging
+import os
+
+import boto3
+
 from ..services.constants_service import ConstantsService
 
 # set logging
@@ -19,7 +29,10 @@ ROUTE_53_ALB_DNS_NAME = os.environ['ROUTE_53_ALB_DNS_NAME']
 constants_service = ConstantsService()
 
 class MonitorService:
-
+    """
+        Provides functions that assist in identfying mis-configured
+        resources within the ALB scaling fleet.
+    """
 
     def get_missing_resource_set_records(
             self, 
