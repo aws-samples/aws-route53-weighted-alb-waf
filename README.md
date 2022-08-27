@@ -26,10 +26,12 @@ ALB instances can be added and removed from the [weighted resource set](https://
 * [Clean-up the project](#clean-up-the-project)
 * [Executing unit tests](#executing-unit-tests)
 * [Executing static code analysis tool](#executing-static-code-analysis-tool)
+* [Security](#security)
+* [License](#license)
 
 ## Solution architecture
 
-The soluition architecture is described below:
+The solution architecture is described below:
 
 ![Solution architecture](docs/assets/solution_architecture.png "Solution architecture")
 
@@ -48,7 +50,7 @@ The supporting services of the solution architecture are referenced below:
 | [AWS Step Functions](https://aws.amazon.com/step-functions/) | AWS Step Functions is a low-code, visual workflow service that developers use to build distributed applications, automate IT and business processes, and build data and machine learning pipelines using AWS services. Workflows manage failures, retries, parallelization, service integrations, and observability so developers can focus on higher-value business logic. AWS Step Function are used within this solution to coordinate the tasks associated with an ALB scale-out or scale-in operation. |
 | [AWS Lambda](https://aws.amazon.com/lambda/) | AWS Lambda is a serverless, event-driven compute service that lets you run code for virtually any type of application or backend service without provisioning or managing servers. You can trigger Lambda from over 200 AWS services and software as a service (SaaS) applications, and only pay for what you use. AWS Lambda is used within this solution as the compute service that executes the tasks associated with an ALB scale-out, scale-in or monitoring operations. |
 | [AWS SNS (Simple Notification Service)](https://aws.amazon.com/sns/) | Amazon Simple Notification Service (Amazon SNS) is a fully managed messaging service for both application-to-application (A2A) and application-to-person (A2P) communication.. AWS SNS is used within this solution as the messaging service which triggers ALB scale-out and scale-in operations. AWS SNS is also used to send event notifications to topic subscribers. |
-| [Amazon ECS (Elastic Container Service)](https://aws.amazon.com/ecs/) | Amazon ECS is a fully managed container orchestration service that helps you easily deploy, manage, and scale containerized applications. It deeply integrates with the rest of the AWS platform to provide a secure and easy-to-use solution for running container workloads. Amazon ECS is used within this solution as the container orhestration service which provides HTTP backend targets for the Front Facing ALBs. |
+| [Amazon ECS (Elastic Container Service)](https://aws.amazon.com/ecs/) | Amazon ECS is a fully managed container orchestration service that helps you easily deploy, manage, and scale containerized applications. It deeply integrates with the rest of the AWS platform to provide a secure and easy-to-use solution for running container workloads. Amazon ECS is used within this solution as the container orchestration service which provides HTTP backend targets for the Front Facing ALBs. |
 | [AWS Fargate](https://aws.amazon.com/fargate/) | AWS Fargate is a serverless, pay-as-you-go compute engine that lets you focus on building applications without managing servers. AWS Fargate is compatible with both Amazon Elastic Container Service and Amazon Elastic Kubernetes Service. Amazon ECS is used within this solution as the compute engine which executes the HTTP backend containers. |
 
 ## Event-driven automations
@@ -242,7 +244,7 @@ Two key points to remember:
 
 ```
 #!/bin/bash
-echo "Testing Route 53 routing distriibution to ALB weighted resource set"
+echo "Testing Route 53 routing distribution to ALB weighted resource set"
 for i in {1..10000}
 do
     domain=$(dig alb.weightedalbwithwaf.internal A @169.254.169.253 +short)
@@ -261,7 +263,7 @@ cat RecursiveResolver_results.txt | tr '[:space:]' '[\n*]' | grep -v "^\s*$" | s
 
 The project includes a [monitor](stacks/weighted_alb_with_waf/resources/lambda/orchestrator/app/monitor) package that is composed of a [Monitor](stacks/weighted_alb_with_waf/resources/lambda/orchestrator/app/monitor/monitor.py) lambda and an [Integrity Enforcer](stacks/weighted_alb_with_waf/resources/lambda/orchestrator/app/monitor/integrity_enforcer.py) lambda.
 
-These two lambdas execute according to a regular [CloudWatch Events schedule](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) and will attept to remediate misconfigurations within the project.
+These two lambdas execute according to a regular [CloudWatch Events schedule](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) and will attempt to remediate misconfigurations within the project.
 
 You can test this functionality by performing any of the following actions:
 
@@ -337,3 +339,11 @@ skip-check:
 These checks represent best practices in AWS and should be enabled (or at the very least the security risk of not enabling the checks should be accepted and understood) for production systems. 
 
 In the context of this solution, these specific checks have not been remediated in order to focus on the core elements of the solution.
+
+# Security
+
+See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
+
+# License
+
+This library is licensed under the MIT-0 License. See the LICENSE file.
