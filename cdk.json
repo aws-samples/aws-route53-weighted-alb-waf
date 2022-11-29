@@ -40,8 +40,8 @@
       "albRoute53DnsName": "alb.weightedalbwithwaf.internal",
       "notification": {
         "method": "email",
-        "target": "aws-siemens-gameday-team3@protonmail.com",
-        "password": "awsPROSERVE-siemens-544b3e"
+        "target": "someuser@somedomain.com",
+        "password": "somepassword"
       },
       "monitor": {
         "monitorRate": 1,
