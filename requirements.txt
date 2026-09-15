@@ -138,7 +138,7 @@ soupsieve==2.3.2.post1
 tabulate==0.8.9
 termcolor==1.1.0
 toml==0.10.2
-tqdm==4.64.0
+tqdm==4.66.3
 typeguard==2.13.3
 types-setuptools==57.4.14
 types-toml==0.10.6
