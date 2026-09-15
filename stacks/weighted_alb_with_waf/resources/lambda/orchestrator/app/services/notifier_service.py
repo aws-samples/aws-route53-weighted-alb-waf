@@ -33,6 +33,7 @@ class NotifierService:
     TEMPLATE_ENV = jinja2.Environment(
         loader=TEMPLATE_LOADER,
         autoescape=jinja2.select_autoescape(
+            enabled_extensions=('html', 'xml'),
             default_for_string=True,
             default=True
         )
