@@ -134,7 +134,7 @@ schema==0.7.5
 semantic-version==2.9.0
 six==1.16.0
 smmap==4.0.0
-soupsieve==2.3.2.post1
+soupsieve==2.8.4
 tabulate==0.8.9
 termcolor==1.1.0
 toml==0.10.2
