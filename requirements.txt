@@ -74,7 +74,7 @@ cached-property==1.5.2
 cachetools==5.0.0
 cattrs==1.8.0
 cdk-expects-matcher==0.1.2
-certifi==2023.7.22
+certifi==2024.7.4
 cffi==1.15.0
 charset-normalizer==2.0.12
 checkov==2.0.1102
