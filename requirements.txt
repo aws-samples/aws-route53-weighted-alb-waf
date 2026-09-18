@@ -124,7 +124,7 @@ pycep-parser==0.3.4
 pycparser==2.21
 pyparsing==2.4.7
 pyrsistent==0.18.1
-pytest==6.2.5
+pytest==9.0.3
 python-dateutil==2.8.2
 PyYAML==6.0
 regex==2022.4.24
